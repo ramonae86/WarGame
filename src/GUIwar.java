@@ -291,6 +291,11 @@ public class GUIwar extends JFrame
 		{
 			try
 			{
+				if(playerHand.getSize() <= 0 || dealerHand.getSize() <= 0)
+					newGameItem.doClick();
+				playerHandLabel.setVisible(true);
+				dealerHandLabel.setVisible(true);
+				
 				playerStatus.setText("<html><font color='white'>player has " + playerHand.getSize() + " cards left</font></html>");
 				dealerStatus.setText("<html><font color='white'>dealer has " + dealerHand.getSize() + " cards left</font></html>");
 				
@@ -408,7 +413,7 @@ public class GUIwar extends JFrame
 			{
 				if(playerHand.getSize() <= 0)
 				{
-					cardPanel.remove(playerHandLabel);
+					playerHandLabel.setVisible(false);;
 					cardPanel.repaint();
 					if(soundSwitch.isSelected())
 					{
@@ -436,7 +441,7 @@ public class GUIwar extends JFrame
 				}
 				else
 				{
-					cardPanel.remove(dealerHandLabel);
+					dealerHandLabel.setVisible(false);;
 					cardPanel.repaint();
 					if(soundSwitch.isSelected())
 					{
@@ -717,7 +722,10 @@ public class GUIwar extends JFrame
 			{
 				if(playerHand.getSize() <= 0)
 				{
-					cardPanel.remove(playerHandLabel);
+					playerHandLabel.setVisible(false);;
+					foldButton.setVisible(false);
+					warButton.setVisible(false);
+					dealButton.setVisible(true);
 					cardPanel.repaint();
 					if(soundSwitch.isSelected())
 					{
@@ -745,7 +753,10 @@ public class GUIwar extends JFrame
 				}
 				else
 				{
-					cardPanel.remove(dealerHandLabel);
+					dealerHandLabel.setVisible(false);;
+					foldButton.setVisible(false);
+					warButton.setVisible(false);
+					dealButton.setVisible(true);
 					cardPanel.repaint();
 					if(soundSwitch.isSelected())
 					{
@@ -899,6 +910,10 @@ public class GUIwar extends JFrame
     		
 			//set round result text to blank
 			roundResult.setText("");
+			
+			//show backPile labels
+			playerHandLabel.setVisible(true);
+			playerHandLabel.setVisible(true);
 			
 			//set buttons as they originally were
 			foldButton.setVisible(false);
